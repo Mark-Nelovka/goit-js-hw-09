@@ -1,11 +1,10 @@
 // Напиши скрипт таймера, который ведёт обратный отсчет
 // до определенной даты.
 
-// Описан в документации
 import flatpickr from 'flatpickr';
-// Дополнительный импорт стилей
 import 'flatpickr/dist/flatpickr.min.css';
-
+import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -14,10 +13,12 @@ const options = {
   onClose(selectedDates) {
       console.log(selectedDates[0]);
       if (selectedDates[0] < new Date()) {
-          window.alert('Please choose a date in the future');
+          refs.input.style.borderColor = 'red';
+          Notiflix.Notify.warning('Пожалуйста, выберите дату в будущем')
       } else {
+          Notiflix.Notify.success('Чтобы запустить таймер нажмите кнопку Start');
           refs.bntStart.disabled = false;
-
+refs.input.style.borderColor = 'green';
           refs.bntStart.addEventListener('click', () => {
               let timeId = setInterval(() => {
           const saveDate = convertMs(selectedDates[0] - new Date());
@@ -52,19 +53,19 @@ return String(value).padStart(2, '0');
 flatpickr(refs.input, options)
 
 function convertMs(ms) {
-  // Number of milliseconds per unit of time
+
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
 
-  // Remaining days
+ 
   const days = addLeadingZero(Math.floor(ms / day));
-  // Remaining hours
+ 
   const hours = addLeadingZero(Math.floor((ms % day) / hour));
-  // Remaining minutes
+
   const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
-  // Remaining seconds
+
   const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
 
   return { days, hours, minutes, seconds };
