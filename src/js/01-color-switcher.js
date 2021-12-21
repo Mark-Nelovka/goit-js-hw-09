@@ -6,7 +6,7 @@
 // ⚠️ Учти, на кнопку «Start» можно нажать бесконечное количество раз.
 // Сделай так, чтобы пока изменение темы запушено, кнопка «Start» была
 // не активна(disabled).
-
+let timeId = null;
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
@@ -17,13 +17,17 @@ const refs = {
 };
 
 refs.btnStart.addEventListener('click', hendleChangeBodyColor);
-let timeId = null;
+
 function hendleChangeBodyColor(e) {
-   timeId = setInterval(() => {
+    refs.btnStop.style.backgroundColor = 'red';
+    refs.btnStart.style.backgroundColor = '';
+    timeId = setInterval(() => {
+        console.log(timeId);
         document.body.style.backgroundColor = getRandomHexColor();
 }, 1000);
-    if (timeId === 1) {
+    if (timeId) {
         refs.btnStart.disabled = true;
+refs.btnStop.disabled = false;
     }
     
 }
@@ -31,5 +35,9 @@ function hendleChangeBodyColor(e) {
 refs.btnStop.addEventListener('click', hendlerStopChangeBodyColor);
 
 function hendlerStopChangeBodyColor(e) {
- clearInterval(timeId);
+    clearInterval(timeId);
+    refs.btnStart.disabled = false;
+    refs.btnStart.style.backgroundColor = 'green';
+    refs.btnStop.disabled = true;
+refs.btnStop.style.backgroundColor = '';
 }
