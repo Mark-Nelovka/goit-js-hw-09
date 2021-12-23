@@ -44,7 +44,7 @@ reject(`❌ Rejected promise ${position} in ${delay} ms`);
   
 function resultPrimises(delayNumber, stepNumber, amountNumber) {
   let counter = 0;
-      for (let i = delayNumber; i < 10000; i += stepNumber) {
+      for (let i = delayNumber; i < 1000000; i += stepNumber) {
         setTimeout(() => {
    
           counter += 1;
