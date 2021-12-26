@@ -61,15 +61,15 @@ function resultPrimises(delayNumber, stepNumber, amountNumber) {
             const stepValue = delayNumber += stepNumber;
             createPrimises(counter, stepValue).then(result => Notiflix.Notify.success(`${result}`)).catch(result => Notiflix.Notify.warning(`${result}`));
           }
-        }, qwe(i, step));
+        }, qwe(delayNumber, i, step));
         }
 }
 
 
-function qwe(i, step) {
+function qwe(delayNumber, i, step) {
   if (step < 1) {
     
-    return 0;
+    return delayNumber;
   }
   return i;
 }
