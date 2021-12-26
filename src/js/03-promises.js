@@ -44,8 +44,9 @@ reject(`❌ Rejected promise ${position} in ${delay} ms`);
   
 function resultPrimises(delayNumber, stepNumber, amountNumber) {
   let counter = 0;
+  // let delay = 0;
   for (let i = delayNumber; i < 1000000; i += delayNumber) {
-        
+    let step = stepNumber;
         setTimeout(() => {
           counter += 1;
           
@@ -53,12 +54,22 @@ function resultPrimises(delayNumber, stepNumber, amountNumber) {
             return;
           
           } else if (counter < 2) {
+            
             createPrimises(counter, delayNumber).then(result => Notiflix.Notify.success(`${result}`)).catch(result => Notiflix.Notify.warning(`${result}`));
           
           } else {
             const stepValue = delayNumber += stepNumber;
             createPrimises(counter, stepValue).then(result => Notiflix.Notify.success(`${result}`)).catch(result => Notiflix.Notify.warning(`${result}`));
           }
-        }, i);
+        }, qwe(i, step));
         }
+}
+
+
+function qwe(i, step) {
+  if (step < 1) {
+    
+    return 0;
+  }
+  return i;
 }
