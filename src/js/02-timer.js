@@ -10,7 +10,8 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
+    onClose(selectedDates) {
+      console.log(new Date)
       console.log(selectedDates[0]);
       if (selectedDates[0] < new Date()) {
           refs.input.style.borderColor = 'red';
@@ -21,7 +22,8 @@ const options = {
 refs.input.style.borderColor = 'green';
           refs.bntStart.addEventListener('click', () => {
               let timeId = setInterval(() => {
-          const saveDate = convertMs(selectedDates[0] - new Date());
+                  const saveDate = convertMs(selectedDates[0] - new Date());
+                  console.log(saveDate)
                   refs.spanDay.textContent = saveDate.days;
                   refs.spanHours.textContent = saveDate.hours;
                   refs.spanMinutes.textContent = saveDate.minutes;

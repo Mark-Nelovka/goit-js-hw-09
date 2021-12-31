@@ -1,4 +1,4 @@
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 const refs = {
   formPromises: document.querySelector('.form'),
@@ -44,9 +44,8 @@ reject(`❌ Rejected promise ${position} in ${delay} ms`);
   
 function resultPrimises(delayNumber, stepNumber, amountNumber) {
   let counter = 0;
-  // let delay = 0;
   for (let i = delayNumber; i < 1000000; i += delayNumber) {
-    let step = stepNumber;
+
         setTimeout(() => {
           counter += 1;
           
@@ -61,13 +60,13 @@ function resultPrimises(delayNumber, stepNumber, amountNumber) {
             const stepValue = delayNumber += stepNumber;
             createPrimises(counter, stepValue).then(result => Notiflix.Notify.success(`${result}`)).catch(result => Notiflix.Notify.warning(`${result}`));
           }
-        }, qwe(delayNumber, i, step));
+        }, time(delayNumber, i, stepNumber));
         }
 }
 
 
-function qwe(delayNumber, i, step) {
-  if (step < 1) {
+function time(delayNumber, i, stepNumber) {
+  if (stepNumber < 1) {
     
     return delayNumber;
   }
